@@ -1,0 +1,12 @@
+name: postgres-db
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped    # always より推奨
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-myapp}
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
